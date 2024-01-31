@@ -3,19 +3,19 @@ from constPS import * #-
 
 context = zmq.Context()
 s_time = context.socket(zmq.PUB)        # cria um socket de publicador para o horário
-p_time = "tcp://0.0.0.0:"+ PORT_TIME      # como e onde comunicar
+p_time = "tcp://0.0.0.0:"+ PORT     # como e onde comunicar
 s_time.bind(p_time)                          # associa o socket ao endereço
 
 s_stock = context.socket(zmq.PUB)        # cria um socket de publicador para preços de ações
-p_stock = "tcp://0.0.0.0:"+ PORT_STOCK      # como e onde comunicar
+p_stock = "tcp://0.0.0.0:"+ PORT      # como e onde comunicar
 s_stock.bind(p_stock)                          # associa o socket ao endereço
 
 s_events = context.socket(zmq.PUB)       # cria um socket de publicador para eventos do sistema
-p_events = "tcp://0.0.0.0:"+ PORT_EVENTS  # como e onde comunicar
+p_events = "tcp://0.0.0.0:"+ PORT  # como e onde comunicar
 s_events.bind(p_events)                   # associa o socket ao endereço
 
 s_chat = context.socket(zmq.PUB)       # cria um socket de publicador para mensagens de chat
-p_chat = "tcp://0.0.0.0:"+ PORT_CHAT  # como e onde comunicar
+p_chat = "tcp://0.0.0.0:"+ PORT  # como e onde comunicar
 s_chat.bind(p_chat)                   # associa o socket ao endereço
 
 while True:
