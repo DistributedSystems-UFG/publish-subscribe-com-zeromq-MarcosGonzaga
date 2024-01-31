@@ -3,24 +3,24 @@ from constPS import * #-
 
 context = zmq.Context()
 s_time = context.socket(zmq.SUB)          # cria um socket de assinante para o horário
-p_time = "tcp://"+ HOST +":"+ PORT_TIME    # como e onde comunicar
+p_time = "tcp://"+ HOST +":"+ PORT    # como e onde comunicar
 s_time.connect(p_time)                     # conecta ao servidor de horário
 s_time.setsockopt_string(zmq.SUBSCRIBE, "TIME")  # assina mensagens com prefixo "TIME"
 
 s_stock = context.socket(zmq.SUB)          # cria um socket de assinante para preços de ações
-p_stock = "tcp://"+ HOST +":"+ PORT_STOCK    # como e onde comunicar
+p_stock = "tcp://"+ HOST +":"+ PORT    # como e onde comunicar
 s_stock.connect(p_stock)                     # conecta ao servidor de preços de ações
 symbol_to_subscribe = "XYZ"
 s_stock.setsockopt_string(zmq.SUBSCRIBE, f"STOCK {symbol_to_subscribe}")  # assina mensagens relacionadas à ação XYZ
 
 s_events = context.socket(zmq.SUB)          # cria um socket de assinante para eventos do sistema
-p_events = "tcp://"+ HOST +":"+ PORT_EVENTS  # como e onde comunicar
+p_events = "tcp://"+ HOST +":"+ PORT  # como e onde comunicar
 s_events.connect(p_events)                     # conecta ao servidor de eventos do sistema
 event_type_to_subscribe = "ALERT"
 s_events.setsockopt_string(zmq.SUBSCRIBE, f"EVENT {event_type_to_subscribe}")  # assina mensagens de eventos do tipo ALERT
 
 s_chat = context.socket(zmq.SUB)          # cria um socket de assinante para mensagens de chat
-p_chat = "tcp://"+ HOST +":"+ PORT_CHAT  # como e onde comunicar
+p_chat = "tcp://"+ HOST +":"+ PORT  # como e onde comunicar
 s_chat.connect(p_chat)                     # conecta ao servidor de mensagens de chat
 user_to_subscribe = "Alice"
 s_chat.setsockopt_string(zmq.SUBSCRIBE, f"CHAT {user_to_subscribe}")  # assina mensagens de chat do usuário Alice
